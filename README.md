@@ -7,7 +7,7 @@ Avaliação da oitava sprint do programa de bolsas Compass UOL para formação e
   
 ## Execução 
   
-Criar APIs que irão rodar o Amazon Rekognition para extrair tags de imagens postadas no S3, utilizar IA generativa para gerar conteúdo com o Amazon Bedrock e utilizar o CloudWatch para gravar os logs dos resultados.
+Criar APIs que irão rodar o Amazon Rekognition para extrair tags de imagens postadas no S3, utilizar IA generativa para gerar conteúdo com o Amazon Bedrock e aplicar o CloudWatch para gravar os logs dos resultados.
   
 **Especificações**: 
   
@@ -15,7 +15,7 @@ A aplicação deverá ser desenvolvida com o framework 'serverless' e deverá se
   
 Passo a passo para iniciar o projeto: 
   
-1. Crie a branch para o seu grupo e efetue o clone 
+1. Crie a branch para o seu grupo e efetue o clone.
   
 2. Instale o framework serverless em seu computador. Mais informações [aqui](https://www.serverless.com/framework/docs/getting-started) 
   
@@ -132,9 +132,9 @@ Após conseguir rodar o projeto base o objetivo final será divida em duas parte
 ``` 
   
 - Essa imagem deverá estar no S3 (faça o upload manualmente).
-- Nesta versão deverão ser implementados novos campos de retorno que definirá qual a EMOÇÃO PRINCIPAL classificada pelo modelo (maior confiança).
-- Para isso utilize um dos modelos que identificam faces do rekognition.
-- O resultado (body) da chamada do Rekognition deverá ser logado na aplicação através do CloudWatch. utilize: `print(body)`.
+- Nesta versão deverão ser implementados campos de retorno para definir qual é a EMOÇÃO PRINCIPAL classificada pelo modelo (maior confiança).
+- Para isso, utilizar um dos modelos que identificam faces do rekognition.
+- O resultado (body) da chamada do Rekognition deverá ser registrado na aplicação através do CloudWatch. utilize: `print(body)`.
 - Caso exista mais de uma face, fazer o retorno de cada uma. 
 - Dessa forma esse post deverá chamar o rekognition para nos entregar o seguinte retorno:
   
@@ -232,9 +232,9 @@ Resposta a ser entregue quando não houver face (exatamente neste formato):
 
 - Deverá responder exatamente como a rota 4, adicionando uma verificação para **pets**.
 - Como na rota 4, essa imagem deverá estar no S3 (faça o upload manualmente).
-- Esse post deverá chamar o rekognition, caso na imagem seja detectado uma categoria **pet**, deverá chamar o bedrock para entregar o retorno como mostrado a seguir.
-- O resultado (body) da chamada do Rekognition deverá ser logado na aplicação através do CloudWatch. utilize: `print(body)`
-- O valor da chave “Dicas” deverá ser gerado pelo bedrock com base nas informações obtidas pelo rekognition, e obrigatoriamente deverá conter as seguintes informações do pet (Nível de energia e necessidades de exercícios, Temperamento e Comportamento, Cuidados e Necessidades, Problemas de Saúde Comuns).
+- Esse post deverá chamar o rekognition, caso na imagem seja detectada uma categoria **pet**, deverá chamar o bedrock para entregar o retorno como mostrado a seguir.
+- O resultado (body) da chamada do Rekognition deverá ser registrado na aplicação através do CloudWatch. utilize: `print(body)`
+- O valor da chave “Dicas” deverá ser gerado pelo bedrock com base nas informações obtidas pelo rekognition, e obrigatoriamente deverá conter as seguintes informações do pet: **Nível de energia e necessidades de exercícios, Temperamento e Comportamento, Cuidados e Necessidades, Problemas de Saúde Comuns**.
 
 Resposta a ser entregue (exatamente neste formato):  
   
@@ -325,7 +325,7 @@ Caso tenha pessoa e pet, entregar ambas análises:
 }
 ```
 
-Dessa maneira essa será a arquitetura a ser impantada em TODA ATIVIDADE será:  
+Dessa maneira essa será a arquitetura a ser implantada em TODA ATIVIDADE será:  
   
 ![arquitetura-base](./assets/arquitetura-base.jpg)  
   
@@ -379,4 +379,4 @@ Exemplos e docs de referência:
    - Dificuldades conhecidas;
    - Como utilizar o sistema;
    - 🔨 código fonte desenvolvido (observar estruturas de pastas);
-- O prazo de entrega é até às 14h do dia 26/08/2024 no repositório do github (https://github.com/Compass-pb-aws-2024-MAIO-A/sprint-8-pb-aws-maio).
+- O prazo de entrega é até às 09h do dia 26/08/2024 no repositório do github (https://github.com/Compass-pb-aws-2024-MAIO-A/sprint-8-pb-aws-maio).
