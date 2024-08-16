@@ -1,9 +1,28 @@
 service: vision
-frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: python3.9
+  runtime: python3.11
+  region: us-east-1
+  profile: ${env:PROFILE_NAME, 'default'}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:ListBucket"
+        - "s3:GetObject"
+      Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - "rekognition:*"
+      Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - "bedrock:*"
+      Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - "cloudwatch:*"
+      Resource: "*"
 
 functions:
   health:
@@ -24,3 +43,16 @@ functions:
       - httpApi:
           path: /v2
           method: get
+  v1_vision:
+    handler: post.v1_vision
+    events:
+      - httpApi:
+          path: /v1/vision
+          method: post
+  v2_vision:
+    handler: post.v2_vision
+    events:
+      - httpApi:
+          path: /v2/vision
+          method: post
+
