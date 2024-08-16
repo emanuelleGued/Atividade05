@@ -31,11 +31,20 @@ def v2_description(event, context):
 
 
 def v1_vision(event, context):
-    body = {"message": "VISION api version 1."}
+    try:
+        body = json.loads(event["body"])
+        bucket = body["bucket"]
+        image_name = body["imageName"]
 
-    response = {"statusCode": 200, "body": json.dumps(body)}
+        emotions = detect_emotions(bucket, image_name)
+        response = format_response(emotions, bucket, image_name)
 
-    return response
+        return {"statusCode": 200, "body": json.dumps(response)}
+
+    except Exception as e:
+        response = {"statusCode": 500, "body": json.dumps({"error": str(e)})}
+
+        return response
 
 
 def v2_vision(event, context):
